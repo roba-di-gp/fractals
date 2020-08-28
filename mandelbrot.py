@@ -6,7 +6,7 @@ start = time.time()
 
 nx = 600
 ny = 400
-iters = 40
+iters = 35
 
 def f(z,c):
     return z*z + c
