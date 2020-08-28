@@ -7,7 +7,6 @@ start = time.time()
 nx = 3000
 ny = 2000
 iters = 60
-size = 0.7
 
 z = complex(0,0)
 
