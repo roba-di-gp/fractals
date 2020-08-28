@@ -1,57 +1,37 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from numba import jit
 import time
-plt.rcParams['axes.facecolor'] = 'k'
 start = time.time()
 
-nx = 600
-ny = 400
-iters = 35
+nx = 3000
+ny = 2000
+iters = 60
 size = 0.7
 
+z = complex(0,0)
+
+@jit
 def iterative(n,z,c):
     for i in range(n):
         if abs(z) < 2:
             z = z*z + c
         else: break
-    return z,i;
+    return i;
 
-x = np.linspace(-2,1,nx)
-y = np.linspace(-1.15,1.15,ny)
-xx = xx1 = xx2 = xx3 = xx4 = xx5 = np.array([])
-yy = yy1 = yy2 = yy3 = yy4 = yy5 = np.array([])
+x = np.linspace(-2.05,1,nx)
+y = np.linspace(-1.2,1.2,ny)
+escape = np.zeros([nx,ny])
 
-for nx, re in enumerate(x):
-    for ny, im in enumerate(y):
-        z = complex(0,0)
+for nx_index, re in enumerate(x):
+    for ny_index, im in enumerate(y):
         c = complex(re,im)
-        ignore, escape = iterative(iters,z,c)
-        if 0<=escape<iters/12:
-            xx5 = np.append(xx5,re)
-            yy5 = np.append(yy5,im)
-        if iters/12<=escape<iters/8:
-            xx4 = np.append(xx4,re)
-            yy4 = np.append(yy4,im)
-        if iters/8<=escape<iters/3:
-            xx3 = np.append(xx3,re)
-            yy3 = np.append(yy3,im)
-        if iters/3<=escape<2*iters/3:
-            xx2 = np.append(xx2,re)
-            yy2 = np.append(yy2,im)
-        if 2*iters/3<=escape<iters-1:
-            xx1 = np.append(xx1,re)
-            yy1 = np.append(yy1,im)
-        if escape == iters-1:
-            xx = np.append(xx,re)
-            yy = np.append(yy,im)
+        escape[nx_index,ny_index] = iterative(iters,z,c)
+    if nx_index % 10 == 0:
+        print('%.2f'%(nx_index/nx))
 
-plt.errorbar(xx,yy,color='k',fmt='.',markersize=size)
-plt.errorbar(xx1,yy1,color='y',fmt='.',markersize=size)
-plt.errorbar(xx2,yy2,color='w',fmt='.',markersize=size)
-plt.errorbar(xx3,yy3,color='b',fmt='.',markersize=size)
-plt.errorbar(xx4,yy4,color='darkblue',fmt='.',markersize=size)
-plt.errorbar(xx5,yy5,color='k',fmt='.',markersize=size)
+plt.imshow(escape.T,cmap='hot',extent=[-2.2,1,-1.1,1.1])
 
 print(time.time() - start)
 plt.show()
-plt.rcParams['axes.facecolor'] = 'w'
+
