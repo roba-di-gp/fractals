@@ -52,7 +52,6 @@ plt.errorbar(xx3,yy3,color='b',fmt='.',markersize=size)
 plt.errorbar(xx4,yy4,color='darkblue',fmt='.',markersize=size)
 plt.errorbar(xx5,yy5,color='k',fmt='.',markersize=size)
 
-print('\n')
 print(time.time() - start)
 plt.show()
 plt.rcParams['axes.facecolor'] = 'w'
