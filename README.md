@@ -1,2 +1,2 @@
 # mandelbrot
-Super-simple algorythm for calculating and rendering Mandelbrot's set.
+Super-simple escape time algorythm for calculating and rendering Mandelbrot's set.
