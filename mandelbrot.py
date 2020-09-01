@@ -1,0 +1,77 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from numba import jit
+import time
+start = time.time()
+
+nx = 1500   #x resolution
+ny = 1000   #y resolution
+iters = 100     #number of iterations
+colormap = 'hot'    #chosen colormap
+ext = [-2,1,-1.1,1.1]   #x and y limits  of the figure
+
+@jit
+def iterative(n,z,c):
+    for i in range(n):
+        if abs(z) < 2:
+            z = z*z + c
+        else: break
+    return i;
+
+def mandelbrot(x,y,nx,ny):
+    z = complex(0,0)
+    escape = np.zeros([nx,ny])
+    for nx_index, re in enumerate(x):
+        for ny_index, im in enumerate(y):
+            c = complex(re,im)
+            escape[nx_index,ny_index] = iterative(iters,z,c)
+        if nx_index % 100 == 0:
+            print('%.2f'%(nx_index/nx))
+    return escape;
+
+x = np.linspace(ext[0],ext[1],nx)
+y = np.linspace(ext[2],ext[3],ny)
+
+escape = mandelbrot(x,y,nx,ny)
+
+fig = plt.figure(0)
+
+plt.imshow(escape.T,cmap=colormap,extent=ext)
+
+#plt.imsave(fname=r'###path',arr=escape.T,cmap=colormap)
+
+print('\n')
+print(time.time() - start)
+print('\n')
+
+def zoom(xp,yp):
+
+    rx = 0.03
+    ry = 0.02
+    fig = plt.figure(1)
+    plt.clf()
+
+    ext1 = [xp-rx,xp+rx,yp+ry,yp-ry]
+    x = np.linspace(ext1[0],ext1[1],nx)
+    y = np.linspace(ext1[2],ext1[3],ny)
+
+    escape = mandelbrot(x,y,nx,ny)
+
+    plt.imshow(escape.T,cmap=colormap,extent=ext1)
+
+    #plt.imsave(fname=r'###path',arr=escape.T,cmap=colormap)
+
+    plt.show()
+
+def onclick(event):
+
+    xp = event.xdata
+    yp = event.ydata
+
+    zoom(xp,yp)
+
+cid = fig.canvas.mpl_connect('button_press_event', onclick)
+
+plt.show()
+
+
