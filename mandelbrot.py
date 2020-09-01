@@ -72,6 +72,6 @@ def onclick(event):
 
 cid = fig.canvas.mpl_connect('button_press_event', onclick)
 
-plt.show()
+plt.show() 
 
 
