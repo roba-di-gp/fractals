@@ -81,6 +81,6 @@ print('\n')
 
 cid0 = fig0.canvas.mpl_connect('button_press_event', onclick)
 
-plt.show()
+plt.show() 
 
 
