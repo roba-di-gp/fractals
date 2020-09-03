@@ -100,7 +100,7 @@ print('\n')
 print(time() - start)
 print('\n')
 
-cid0 = fig0.canvas.mpl_connect('button_press_event', onclick)
+cid0 = fig0.canvas.mpl_connect('button_press_event', onclick) 
 
 plt.show()
 
