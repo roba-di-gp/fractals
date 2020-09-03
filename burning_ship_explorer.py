@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numba import jit
 import time
-start = time.time()
+start = time.time() 
 
 nx = 1800  #x resolution
 ny = 1200 #y resolution
