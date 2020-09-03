@@ -8,7 +8,7 @@ nx = 1800  #main figure x resolution
 ny = 1200  #main figure y resolution
 
 jx = 1800  #Julia rendering x res
-jy = 900   #Julia rendering y res
+jy = 1800   #Julia rendering y res
 
 #number of iterations of the Mandelbrot set calculation
 iters = 100
