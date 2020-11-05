@@ -1,6 +1,6 @@
 # Fractal world
 
-[julia_sets_in_mandelbrot]
+@julia_sets_in_mandelbrot
 
 A super-simple escape time algorithm is implement to render the Mandelbrot set for a chosen complex polynomial map, in a specified Python colormap. Click on a point *(x,y)* on the main figure to render the filled-in Julia set for the same polynomial map of fixed constant term *c = x +iy*.
 
