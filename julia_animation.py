@@ -81,6 +81,6 @@ video = anim.ArtistAnimation(fig, ims, interval=interval, repeat_delay=0, blit=T
 
 writer = anim.PillowWriter(fps=60)
 
-#video.save(r'c:\users\gugli\desktop\roba\fractal_world\images\juliaprogression.gif',writer= writer)
+#video.save(r'###path###\filename.gif',writer= writer)
 
 plt.show()
