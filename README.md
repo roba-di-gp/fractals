@@ -15,3 +15,7 @@ The program renders the filled-in Julia set for a chosen polynomial map through 
 # burning_ship_explorer
 
 The method of the previous programs is implemented to render the Burning ship fractal. Click on a point *(x,y)* to zoom on his neighborhooh.
+
+# juia_animation
+
+Animate a sequence of filled-in Julia sets. The sequence of the complex constants *c* is obtained through a specified function *c = fc(p)* defined on the parameter space *sp*. The *c*s are plugged in a polynomial map that is iterated *iters* times to render the sequence of frames of the animation.
