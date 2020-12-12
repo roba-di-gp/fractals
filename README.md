@@ -1,4 +1,4 @@
-# Fractal world
+# fractals
 
 # julia_sets_in_mandelbrot
 
